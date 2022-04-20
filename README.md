@@ -1,6 +1,6 @@
 # JCSilkSpawners
 
-A very simple plugin for mining spawners with silk touch built for the JumanjiCraft server.
+A very simple Spigot plugin for mining spawners with silk touch built for the JumanjiCraft server.
 
 <h2>
   Permissions:
