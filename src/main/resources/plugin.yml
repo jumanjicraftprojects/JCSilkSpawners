@@ -1,0 +1,10 @@
+name: JCSilkSpawners
+version: '${project.version}'
+main: dev.appeazethecheese.jcsilkspawners.JCSilkSpawners
+api-version: 1.18
+authors: [ AppeazeTheCheese ]
+permissions:
+  jc.silkspawners.canbreakspawners:
+    description: Players with this permission can break spawners with a silk touch pickaxe
+    default: false
+description: A simple plugin that allows you to use silk touch on spawners. Built for the JumanjiCraft server.
