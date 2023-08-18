@@ -9,9 +9,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.*;
+import org.bukkit.event.entity.SpawnerSpawnEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -80,6 +79,14 @@ public class Events implements Listener {
         if(slot2Item != null){
             if(slot2Item.getType() == Material.SPAWNER)
                 e.setResult(null);
+        }
+    }
+
+    @EventHandler
+    public void onSpawnerSpawn(SpawnerSpawnEvent event){
+        var spawner = event.getSpawner();
+        if(spawner.getBlock().getBlockPower() > 0){
+            event.setCancelled(true);
         }
     }
 
