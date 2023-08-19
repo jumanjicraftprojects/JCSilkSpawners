@@ -26,7 +26,6 @@ public class Events implements Listener {
 
     @EventHandler
     public void onBlockBroken(BlockBreakEvent e){
-
         var block = e.getBlock();
         var brokeWith = e.getPlayer().getInventory().getItemInMainHand();
         if(block.getType() != Material.SPAWNER
@@ -57,15 +56,19 @@ public class Events implements Listener {
             return;
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
-
         var item = e.getItemInHand();
         var itemMeta = (BlockStateMeta)item.getItemMeta();
         var spawnerInHand = (CreatureSpawner)itemMeta.getBlockState();
         var entity = spawnerInHand.getSpawnedType();
 
+        JCSilkSpawners.Instance.getLogger().warning(entity.name());
+
         var placedBlock = e.getBlockPlaced();
         var placedSpawner = (CreatureSpawner) placedBlock.getState();
-        placedSpawner.setSpawnedType(entity);
+        Bukkit.getScheduler().runTaskLater(JCSilkSpawners.Instance, () -> {
+            placedSpawner.setSpawnedType(entity);
+            placedSpawner.update();
+        }, 1L);
     }
 
     @EventHandler

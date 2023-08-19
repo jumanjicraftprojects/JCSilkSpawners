@@ -1,7 +1,7 @@
 name: JCSilkSpawners
 version: '${project.version}'
 main: dev.appeazethecheese.jcsilkspawners.JCSilkSpawners
-api-version: 1.18
+api-version: 1.20
 authors: [ AppeazeTheCheese ]
 permissions:
   jc.silkspawners.canbreakspawners:
