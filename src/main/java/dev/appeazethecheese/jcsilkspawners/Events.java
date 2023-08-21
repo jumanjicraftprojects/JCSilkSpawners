@@ -8,6 +8,7 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.SpawnerSpawnEvent;
@@ -24,7 +25,7 @@ import java.util.Locale;
 public class Events implements Listener {
     private static final String CanBreakSpawnersPermission = "jc.silkspawners.canbreakspawners";
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockBroken(BlockBreakEvent e){
         var block = e.getBlock();
         var brokeWith = e.getPlayer().getInventory().getItemInMainHand();
@@ -49,7 +50,7 @@ public class Events implements Listener {
         block.getWorld().dropItemNaturally(block.getLocation(), item);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockPlaced(BlockPlaceEvent e){
         var block = e.getBlock();
         if(block.getType() != Material.SPAWNER)
@@ -71,7 +72,8 @@ public class Events implements Listener {
         }, 1L);
     }
 
-    @EventHandler
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPrepareAnvil(PrepareAnvilEvent e){
         var slot1Item = e.getInventory().getItem(0);
         var slot2Item = e.getInventory().getItem(1);
@@ -85,7 +87,7 @@ public class Events implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onSpawnerSpawn(SpawnerSpawnEvent event){
         var spawner = event.getSpawner();
         if(spawner.getBlock().getBlockPower() > 0){
